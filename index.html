@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Aplikasi Pembuatan Modul Ajar KMA 1503 - KBC</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <header>
+        <h1>Aplikasi Pembuatan Modul Ajar</h1>
+        <p>
+          Sesuai KMA 1503 (Kurikulum Berbasis Cinta/KBC) Kementerian Agama.
+          Ditenagai API ChatGPT dengan fallback otomatis ke puter.js saat limit tercapai.
+        </p>
+      </header>
+
+      <section class="card">
+        <h2>Konfigurasi AI</h2>
+        <div class="grid two">
+          <label>
+            API Key OpenAI
+            <input id="openaiKey" type="password" placeholder="sk-..." autocomplete="off" />
+          </label>
+          <label>
+            Model OpenAI
+            <input id="openaiModel" type="text" value="gpt-4.1-mini" />
+          </label>
+        </div>
+        <p class="hint">
+          API key hanya dipakai di browser ini (tidak disimpan server). Jika request OpenAI gagal karena kuota/limit,
+          aplikasi akan otomatis mencoba generator <code>puter.js</code>.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2>Data Modul Ajar</h2>
+        <form id="moduleForm">
+          <div class="grid two">
+            <label>Jenjang
+              <input name="jenjang" required placeholder="Contoh: MI/MTs/MA" />
+            </label>
+            <label>Kelas / Fase
+              <input name="kelasFase" required placeholder="Contoh: Kelas X / Fase E" />
+            </label>
+            <label>Mata Pelajaran
+              <input name="mapel" required placeholder="Contoh: Fikih" />
+            </label>
+            <label>Semester
+              <input name="semester" required placeholder="Contoh: Ganjil" />
+            </label>
+            <label>Topik Materi
+              <input name="topik" required placeholder="Contoh: Thaharah" />
+            </label>
+            <label>Alokasi Waktu
+              <input name="alokasiWaktu" required placeholder="Contoh: 3 JP" />
+            </label>
+          </div>
+
+          <label>Tujuan Pembelajaran
+            <textarea name="tujuan" rows="3" required placeholder="Tuliskan capaian/tujuan pembelajaran."></textarea>
+          </label>
+
+          <label>Profil Pelajar Rahmatan lil 'Alamin yang difokuskan
+            <textarea name="profil" rows="2" placeholder="Contoh: Berkeadaban, keteladanan, moderat, cinta tanah air."></textarea>
+          </label>
+
+          <label>Nilai KBC (Cinta kepada Allah, sesama, lingkungan, bangsa)
+            <textarea name="nilaiKBC" rows="2" placeholder="Nilai KBC yang ditekankan dalam pembelajaran."></textarea>
+          </label>
+
+          <label>Asesmen yang diinginkan
+            <textarea name="asesmen" rows="2" placeholder="Contoh: Diagnostik, formatif, sumatif, rubrik proyek."></textarea>
+          </label>
+
+          <label>Catatan Tambahan
+            <textarea name="catatan" rows="2" placeholder="Kebutuhan diferensiasi, media pembelajaran, dll."></textarea>
+          </label>
+
+          <button id="generateBtn" type="submit">Generate Modul Ajar</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <div class="output-head">
+          <h2>Hasil Modul Ajar</h2>
+          <button id="copyBtn" type="button">Salin Hasil</button>
+        </div>
+        <p id="status" class="status idle">Siap digunakan.</p>
+        <pre id="output">Belum ada hasil. Isi form lalu klik “Generate Modul Ajar”.</pre>
+      </section>
+    </main>
+
+    <script src="https://js.puter.com/v2/" defer></script>
+    <script src="app.js" defer></script>
+  </body>
+</html>
